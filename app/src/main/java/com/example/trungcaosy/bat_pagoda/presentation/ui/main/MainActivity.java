@@ -1,6 +1,7 @@
 package com.example.trungcaosy.bat_pagoda.presentation.ui.main;
 
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 
 import com.example.trungcaosy.bat_pagoda.R;
 import com.example.trungcaosy.bat_pagoda.base.BaseActivity;
@@ -9,8 +10,12 @@ import com.example.trungcaosy.bat_pagoda.presentation.ui.main.di.MainPresenter;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+
 public class MainActivity extends BaseActivity<MainContract.ViewContract, MainContract.PresenterContract>
         implements MainContract.ViewContract {
+    @BindView(R.id.vpMain)
+    ViewPager vpMain;
 
     @Inject
     MainPresenter mMainPresenter;;

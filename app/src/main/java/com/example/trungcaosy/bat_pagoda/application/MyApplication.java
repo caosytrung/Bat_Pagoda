@@ -25,6 +25,15 @@ public class MyApplication extends Application   implements HasActivityInjector,
     @Inject
     DispatchingAndroidInjector<android.support.v4.app.Fragment> fragmentInjector;
 
+    private boolean isOpened;
+
+    public boolean isOpened() {
+        return isOpened;
+    }
+
+    public void setOpened(boolean opened) {
+        isOpened = opened;
+    }
 
     @Override
     public AndroidInjector<Activity> activityInjector() {

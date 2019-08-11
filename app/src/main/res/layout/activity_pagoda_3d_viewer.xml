@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bg_toolbar" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#DDFF6D00" />
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ic_white_back"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/model_3d"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/ivBack"
+            android:layout_centerInParent="true"
+            android:maxWidth="200dp"/>
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="2dp"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:id="@+id/iv_menu"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ic_white_vertical_menu"/>
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:padding="6dp"
+            android:layout_width="42dp"
+            android:layout_toLeftOf="@id/iv_menu"
+            android:layout_height="42dp"
+            android:id="@+id/iv_zoom_out"
+            android:layout_marginRight="12dp"
+            android:src="@drawable/ic_white_zoom_out"/>
+
+        <ImageView
+            android:id="@+id/iv_zoom_in"
+            android:layout_centerVertical="true"
+            android:padding="6dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/ic_white_zoom_in"
+            android:layout_toLeftOf="@id/iv_zoom_out"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/line_color" />
+    <com.example.trungcaosy.bat_pagoda.presentation.ui.model_3d.model.ModelSurfaceView
+        android:layout_width="match_parent"
+        android:id="@+id/modelView"
+        android:layout_height="match_parent" />
+</LinearLayout>

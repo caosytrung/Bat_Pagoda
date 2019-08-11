@@ -1,14 +1,17 @@
 package com.example.trungcaosy.bat_pagoda.presentation.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
 import com.example.trungcaosy.bat_pagoda.R;
 import com.example.trungcaosy.bat_pagoda.base.BaseActivity;
 import com.example.trungcaosy.bat_pagoda.presentation.custom_view.indicator.ViewPagerIndicator;
+import com.example.trungcaosy.bat_pagoda.presentation.ui.detail.DetailActivity;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.main.adapter.ImagePagerAdapter;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.main.di.MainContract;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.main.di.MainPresenter;
+import com.example.trungcaosy.bat_pagoda.presentation.ui.model_3d.Pagoda3DViewerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainActivity extends BaseActivity<MainContract.ViewContract, MainContract.PresenterContract>
@@ -50,14 +54,12 @@ public class MainActivity extends BaseActivity<MainContract.ViewContract, MainCo
         imageList.add(R.drawable.img_vp_4);
 
         vpMain.setAdapter(new ImagePagerAdapter(this, imageList).setInfiniteLoop(false));
-      //  vpMain.setOnPageChangeListener(new MyOnPageChangeListener());
 
         vpMain.setInterval(3000);
         vpMain.startAutoScroll();
         vpMain.setCurrentItem(0);
 
         indicator.setupWithViewPager(vpMain);
-        //  viewPagerIndicator.addOnPageChangeListener(mOnPageChangeListener);
     }
 
     @Override
@@ -87,20 +89,13 @@ public class MainActivity extends BaseActivity<MainContract.ViewContract, MainCo
 
     }
 
-    private class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
-        @Override
-        public void onPageScrolled(int i, float v, int i1) {
+   @OnClick(R.id.iv3dViewer)
+    public void open3DViewer(){
+        startActivity(new Intent(this, Pagoda3DViewerActivity.class));
+   }
 
-        }
-
-        @Override
-        public void onPageSelected(int i) {
-
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int i) {
-
-        }
-    }
+   @OnClick(R.id.btn_htdl)
+    public void menuClicked(){
+        startActivity(new Intent(this, DetailActivity.class));
+   }
 }

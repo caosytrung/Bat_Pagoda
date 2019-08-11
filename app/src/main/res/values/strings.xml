@@ -5,9 +5,10 @@
     <string name="nha_hang_quan_">Nhà Hàng, Quán Ăn</string>
     <string name="khanh_san">Khách Sạn</string>
     <string name="dia_diem_du_lich">Tham Quan, Du Lịch</string>
-    <string name="le_hoi_su_kien">Lễ Hội Và Sự </string>
+    <string name="le_hoi_su_kien">Lễ Hội Và Sự Kiện</string>
     <string name="di_tich">Di Tích Văn Hoá</string>
-    <string name="ton_giao">Tôn Giáo Tín </string>
-    <string name="bao_tang_nha_hat">Bảo Tàng, Nhà </string>
+    <string name="ton_giao">Tôn Giáo Tín Ngưỡng</string>
+    <string name="bao_tang_nha_hat">Bảo Tàng, Nhà Hát</string>
     <string name="chua_doi">Chùa Dơi</string>
+    <string name="model_3d">3D Model</string>
 </resources>

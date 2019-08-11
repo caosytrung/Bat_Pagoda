@@ -8,4 +8,5 @@
     <color name="primary_color">#F57C00</color>
     <color name="line_color">#5D4037</color>
     <color name="gray">#757575</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>

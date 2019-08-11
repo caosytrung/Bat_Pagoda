@@ -30,7 +30,7 @@ public class FlashActivity extends Activity {
                 } catch (Exception e){
                 }
             }
-        }, 3000);
+        }, 1000);
     }
 
     private void moveToMain(){

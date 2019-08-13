@@ -1,6 +1,8 @@
 package com.example.trungcaosy.bat_pagoda.core_di.module;
 
-import com.example.trungcaosy.bat_pagoda.network.UserProfileService;
+import com.example.trungcaosy.bat_pagoda.data.repository.TreeDataRepositoryImpl;
+import com.example.trungcaosy.bat_pagoda.domain.repository.TreeDataRepository;
+import com.example.trungcaosy.bat_pagoda.network.AppAPIService;
 import com.example.trungcaosy.bat_pagoda.utils.DataConstant;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -20,8 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class APIModule {
 
-
-    public UserProfileService provideUserProfileService(){
+    public AppAPIService provideUserProfileService(){
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                 .create();
@@ -34,7 +35,7 @@ public class APIModule {
                 .client(provideHttpClient())
                 .build();
 
-        return retrofit.create(UserProfileService.class);
+        return retrofit.create(AppAPIService.class);
     }
 
     @Singleton
@@ -53,6 +54,12 @@ public class APIModule {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         return gsonBuilder.create();
+    }
+
+    @Provides
+    @Singleton
+    public TreeDataRepository provideTherapyHistoryRepos(){
+        return new TreeDataRepositoryImpl(provideUserProfileService());
     }
 //
 //    @Provides

@@ -24,6 +24,7 @@ import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 public class MainActivity extends BaseActivity<MainContract.ViewContract, MainContract.PresenterContract>
         implements MainContract.ViewContract {
+    private static int DELAY_TIME = 3000;
     @BindView(R.id.vpMain)
     AutoScrollViewPager vpMain;
 
@@ -55,11 +56,13 @@ public class MainActivity extends BaseActivity<MainContract.ViewContract, MainCo
 
         vpMain.setAdapter(new ImagePagerAdapter(this, imageList).setInfiniteLoop(false));
 
-        vpMain.setInterval(3000);
+        vpMain.setInterval(DELAY_TIME);
         vpMain.startAutoScroll();
         vpMain.setCurrentItem(0);
 
         indicator.setupWithViewPager(vpMain);
+
+        mMainPresenter.getTreeData();
     }
 
     @Override

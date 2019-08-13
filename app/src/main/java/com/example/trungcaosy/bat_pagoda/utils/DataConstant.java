@@ -14,7 +14,8 @@ public class DataConstant {
 
     public static final String TOPIC_KEY = "topic";
 //    public static final String BASE_URL = "https://lit-plateau-34257.herokuapp.com/";
-    public static final String BASE_URL = "http://128.199.90.9:4000/";
+//    public static final String BASE_URL = "http://128.199.90.9:4000/";
+public static final String BASE_URL = "https://bat-pagoda.herokuapp.com/";
     public static final String FCM_TOKEN_KEY = "FCM_TOKEN";
     public static final String APP_TOKEN_KEY = "APP_TOKEN";
     public static final String DEDAULT_TITLE = "Notice";;
@@ -25,4 +26,5 @@ public class DataConstant {
 
     public static final String NOTICE = "Thông báo";
     public static final String LOADING = "Đang tải";
+    public static final String FBCLID = "IwAR3oHa0_S8gbGYdaj-QJWJ1V-yZ5AeTKUzQNV3B3G_Kw37OMwwE5i98eTmw" ;
 }

@@ -9,7 +9,6 @@ public interface MainContract {
     }
 
     interface PresenterContract extends BaseContract.PresenterContract<ViewContract>{
-        void test();
-
+        void getTreeData();
     }
 }

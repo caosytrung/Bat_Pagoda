@@ -7,7 +7,7 @@ import dagger.Binds;
 import dagger.Module;
 
 @Module
-public abstract class DetailModule {
+public abstract class CategoryModule {
     @ActivityScope
     @Binds
     abstract BaseContract.PresenterContract providePresenter(CategoryPresenter presenter);

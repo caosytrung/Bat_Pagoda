@@ -6,4 +6,8 @@ public class Utils {
         return  str == null || str.isEmpty();
     }
 
+    public static boolean isNotStringEmpty(String str){
+        return str != null && str.length() > 0;
+    }
+
 }

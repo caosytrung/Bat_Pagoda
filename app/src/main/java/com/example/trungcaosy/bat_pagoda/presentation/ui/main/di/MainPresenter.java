@@ -1,7 +1,7 @@
 package com.example.trungcaosy.bat_pagoda.presentation.ui.main.di;
 
 import com.example.trungcaosy.bat_pagoda.base.mvp.BaseApiPresenter;
-import com.example.trungcaosy.bat_pagoda.data.response.TreeData;
+import com.example.trungcaosy.bat_pagoda.data.response.NodeData;
 import com.example.trungcaosy.bat_pagoda.domain.fetcher.ResultListener;
 import com.example.trungcaosy.bat_pagoda.domain.interactor.GetTreeDataUseCase;
 import com.example.trungcaosy.bat_pagoda.utils.DataConstant;
@@ -21,7 +21,7 @@ public class MainPresenter extends BaseApiPresenter<MainContract.ViewContract> i
 
     @Override
     public void getTreeData() {
-        fetch(getTreeDataUseCase.getTreeData(), new ResultListener<List<TreeData>>() {
+        fetch(getTreeDataUseCase.getTreeData(), new ResultListener<List<NodeData>>() {
             @Override
             public void onRequestStart() {
                 if (isViewAttached())
@@ -29,7 +29,7 @@ public class MainPresenter extends BaseApiPresenter<MainContract.ViewContract> i
             }
 
             @Override
-            public void onRequestSuccess(List<TreeData> response) {
+            public void onRequestSuccess(List<NodeData> response) {
                 if(!isViewAttached())
                     return;
             }

@@ -1,6 +1,8 @@
 package com.example.trungcaosy.bat_pagoda.core_di.module;
 
+import com.example.trungcaosy.bat_pagoda.data.repository.ItemDetailRepositoryImpl;
 import com.example.trungcaosy.bat_pagoda.data.repository.TreeDataRepositoryImpl;
+import com.example.trungcaosy.bat_pagoda.domain.repository.ItemDetailRepository;
 import com.example.trungcaosy.bat_pagoda.domain.repository.TreeDataRepository;
 import com.example.trungcaosy.bat_pagoda.network.AppAPIService;
 import com.example.trungcaosy.bat_pagoda.utils.DataConstant;
@@ -60,6 +62,12 @@ public class APIModule {
     @Singleton
     public TreeDataRepository provideTherapyHistoryRepos(){
         return new TreeDataRepositoryImpl(provideUserProfileService());
+    }
+
+    @Provides
+    @Singleton
+    public ItemDetailRepository provideItemDetailRepository(){
+        return new ItemDetailRepositoryImpl(provideUserProfileService());
     }
 //
 //    @Provides

@@ -54,8 +54,6 @@ public abstract class BaseActivity<V extends BaseContract.ViewContract, P extend
         }
 
         onViewReady(savedInstanceState);
-
-
     }
 
     public void showNetDialog(String mesage){

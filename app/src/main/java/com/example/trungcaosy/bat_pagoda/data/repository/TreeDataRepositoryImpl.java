@@ -1,6 +1,6 @@
 package com.example.trungcaosy.bat_pagoda.data.repository;
 
-import com.example.trungcaosy.bat_pagoda.data.response.TreeData;
+import com.example.trungcaosy.bat_pagoda.data.response.NodeData;
 import com.example.trungcaosy.bat_pagoda.domain.repository.TreeDataRepository;
 import com.example.trungcaosy.bat_pagoda.network.AppAPIService;
 import com.example.trungcaosy.bat_pagoda.utils.DataConstant;
@@ -22,7 +22,7 @@ public class TreeDataRepositoryImpl implements TreeDataRepository {
 
 
     @Override
-    public Observable<List<TreeData>> getGlobalTreeData() {
+    public Observable<List<NodeData>> getGlobalTreeData() {
         return appAPIService.getTreeData(DataConstant.FBCLID);
     }
 }

@@ -5,8 +5,10 @@ import android.app.Application;
 
 import com.example.trungcaosy.bat_pagoda.core_di.component.AppComponent;
 import com.example.trungcaosy.bat_pagoda.core_di.component.DaggerAppComponent;
+import com.example.trungcaosy.bat_pagoda.data.response.NodeData;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -19,6 +21,15 @@ public class MyApplication extends Application   implements HasActivityInjector,
 
     private static WeakReference<MyApplication> applicationWeakReference;
     private volatile boolean needToInject = true;
+    private List<NodeData> treeDataList;
+
+    public List<NodeData> getTreeDataList() {
+        return treeDataList;
+    }
+
+    public void setTreeDataList(List<NodeData> treeDataList) {
+        this.treeDataList = treeDataList;
+    }
 
     @Inject
     DispatchingAndroidInjector<Activity> activityInjector;

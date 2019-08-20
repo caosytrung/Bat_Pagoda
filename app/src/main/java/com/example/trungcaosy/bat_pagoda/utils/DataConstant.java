@@ -27,4 +27,14 @@ public static final String BASE_URL = "https://bat-pagoda.herokuapp.com/";
     public static final String NOTICE = "Thông báo";
     public static final String LOADING = "Đang tải";
     public static final String FBCLID = "IwAR3oHa0_S8gbGYdaj-QJWJ1V-yZ5AeTKUzQNV3B3G_Kw37OMwwE5i98eTmw" ;
+
+    public static final String TYPE_ITEM = "item";
+    public static final String TYPE_CATEGORY = "category";
+    public static final String NODE_DATA = "node_data";
+    public static String TOOLBAR_TITLE = "toolbar_title";
+
+    public static String ADDRESS = "address";
+    public static String EMAIL = "email";
+    public static String PHONE = "phone";
+    public static String WEBSITE = "website";
 }

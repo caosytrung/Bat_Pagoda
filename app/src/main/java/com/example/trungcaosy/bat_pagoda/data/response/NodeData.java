@@ -2,9 +2,10 @@ package com.example.trungcaosy.bat_pagoda.data.response;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TreeData {
+public class NodeData implements Serializable {
     @SerializedName("_id")
     public String id;
 
@@ -18,5 +19,8 @@ public class TreeData {
     public String name;
 
     @SerializedName("items")
-    public List<TreeData> childList;
+    public List<NodeData> childList;
+
+    @SerializedName("img_url")
+    public String imageUrl;
 }

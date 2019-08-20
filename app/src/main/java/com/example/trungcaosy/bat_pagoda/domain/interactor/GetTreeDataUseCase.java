@@ -1,6 +1,6 @@
 package com.example.trungcaosy.bat_pagoda.domain.interactor;
 
-import com.example.trungcaosy.bat_pagoda.data.response.TreeData;
+import com.example.trungcaosy.bat_pagoda.data.response.NodeData;
 import com.example.trungcaosy.bat_pagoda.domain.repository.TreeDataRepository;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public class GetTreeDataUseCase {
         this.treeDataRepository = treeDataRepository;
     }
 
-    public Observable<List<TreeData>> getTreeData(){
+    public Observable<List<NodeData>> getTreeData(){
         return  treeDataRepository.getGlobalTreeData();
     }
 }

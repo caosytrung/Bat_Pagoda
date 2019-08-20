@@ -1,15 +1,14 @@
-package com.example.trungcaosy.bat_pagoda.presentation.ui.detail.di;
+package com.example.trungcaosy.bat_pagoda.presentation.ui.category.di;
 
 import com.example.trungcaosy.bat_pagoda.base.mvp.BaseContract;
 import com.example.trungcaosy.bat_pagoda.base.mvp.BaseListContract;
-import com.example.trungcaosy.bat_pagoda.presentation.ui.main.di.MainContract;
 
-public class DetailContract {
+public class CategoryContract {
     public interface ViewContract extends BaseListContract.ViewContract{
 
     }
 
-    public interface PresenterContract extends BaseContract.PresenterContract<DetailContract.ViewContract>{
+    public interface PresenterContract extends BaseContract.PresenterContract<CategoryContract.ViewContract>{
 
     }
 }

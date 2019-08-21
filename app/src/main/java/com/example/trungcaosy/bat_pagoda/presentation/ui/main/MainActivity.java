@@ -19,6 +19,7 @@ import com.example.trungcaosy.bat_pagoda.presentation.ui.detail.di.DetailContrac
 import com.example.trungcaosy.bat_pagoda.presentation.ui.main.adapter.ImagePagerAdapter;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.main.di.MainContract;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.main.di.MainPresenter;
+import com.example.trungcaosy.bat_pagoda.presentation.ui.map.MapActivity;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.model_3d.Pagoda3DViewerActivity;
 import com.example.trungcaosy.bat_pagoda.utils.DataConstant;
 
@@ -143,6 +144,11 @@ public class MainActivity extends BaseActivity<MainContract.ViewContract, MainCo
     @OnClick(R.id.iv3dViewer)
     public void open3DViewer() {
         startActivity(new Intent(this, Pagoda3DViewerActivity.class));
+    }
+
+    @OnClick(R.id.ivMaps)
+    public void openMaps() {
+        startActivity(new Intent(this, MapActivity.class));
     }
 
     @Override

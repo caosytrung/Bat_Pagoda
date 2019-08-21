@@ -9,6 +9,8 @@ import com.example.trungcaosy.bat_pagoda.presentation.ui.flash.SplashActivity;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.flash.di.SplashModule;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.main.MainActivity;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.main.di.MainModule;
+import com.example.trungcaosy.bat_pagoda.presentation.ui.map.MapActivity;
+import com.example.trungcaosy.bat_pagoda.presentation.ui.map.di.MapModule;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.model_3d.Pagoda3DViewerActivity;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.model_3d.di.Pagoda3DModule;
 
@@ -36,4 +38,8 @@ public abstract class ActivityModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = SplashModule.class)
     abstract SplashActivity splashActivity();
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = MapModule.class)
+    abstract MapActivity mapActivity();
 }

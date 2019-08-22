@@ -1,6 +1,7 @@
 package com.example.trungcaosy.bat_pagoda.network;
 
 import com.example.trungcaosy.bat_pagoda.data.response.ItemDetail;
+import com.example.trungcaosy.bat_pagoda.data.response.MapDataResponse;
 import com.example.trungcaosy.bat_pagoda.data.response.NodeData;
 
 import java.util.List;
@@ -16,4 +17,7 @@ public interface AppAPIService {
 
     @GET("details/{id}")
     Observable<ItemDetail> getItemDetail(@Path("id") String id);
+
+    @GET("places")
+    Observable<List<MapDataResponse>> getMapData();
 }

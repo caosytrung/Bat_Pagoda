@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import com.example.trungcaosy.bat_pagoda.R;
 import com.example.trungcaosy.bat_pagoda.application.MyApplication;
 import com.example.trungcaosy.bat_pagoda.base.BaseActivity;
+import com.example.trungcaosy.bat_pagoda.data.response.MapDataResponse;
 import com.example.trungcaosy.bat_pagoda.data.response.NodeData;
 import com.example.trungcaosy.bat_pagoda.presentation.custom_view.indicator.ViewPagerIndicator;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.category.CategoryActivity;
@@ -23,6 +24,7 @@ import com.example.trungcaosy.bat_pagoda.presentation.ui.map.MapActivity;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.model_3d.Pagoda3DViewerActivity;
 import com.example.trungcaosy.bat_pagoda.utils.DataConstant;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,21 +127,21 @@ public class MainActivity extends BaseActivity<MainContract.ViewContract, MainCo
         super.onStop();
         vpMain.stopAutoScroll();
     }
-
     @Override
     public void showLoading(String message) {
-
+        showNetDialog(message);
     }
 
     @Override
     public void hideLoading() {
-
+        dismisNetDialog();
     }
 
     @Override
     public void showError(String title, String message) {
-
+        showAlert(title, message);
     }
+
 
     @OnClick(R.id.iv3dViewer)
     public void open3DViewer() {
@@ -148,7 +150,8 @@ public class MainActivity extends BaseActivity<MainContract.ViewContract, MainCo
 
     @OnClick(R.id.ivMaps)
     public void openMaps() {
-        startActivity(new Intent(this, MapActivity.class));
+        mMainPresenter.getMapData();
+        //startActivity(new Intent(this, MapActivity.class));
     }
 
     @Override
@@ -174,5 +177,12 @@ public class MainActivity extends BaseActivity<MainContract.ViewContract, MainCo
         Intent intent = new Intent(this, CategoryActivity.class);
         intent.putExtra(DataConstant.NODE_DATA, nodeData);
         startActivity(new Intent(intent));
+    }
+
+    @Override
+    public void onGetMapSuccess(List<MapDataResponse> response) {
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra("ListMap", (Serializable) response);
+        startActivity(intent);
     }
 }

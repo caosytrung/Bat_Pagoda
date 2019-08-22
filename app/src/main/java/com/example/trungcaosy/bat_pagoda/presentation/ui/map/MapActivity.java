@@ -1,10 +1,12 @@
 package com.example.trungcaosy.bat_pagoda.presentation.ui.map;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.trungcaosy.bat_pagoda.R;
 import com.example.trungcaosy.bat_pagoda.base.BaseActivity;
+import com.example.trungcaosy.bat_pagoda.data.response.MapDataResponse;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.main.di.MainContract;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.map.di.MapContract;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.map.di.MapPresenter;
@@ -15,6 +17,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.maps.android.clustering.ClusterManager;
 
 import org.json.JSONException;
@@ -81,13 +84,25 @@ public class MapActivity extends BaseActivity<MapContract.ViewContract, MapContr
             return;
         }
         mMap = googleMap;
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                return false;
+            }
+        });
         startDemo();
     }
 
     protected void startDemo() {
-        getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 10));
+      //  getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 10));
 
         mClusterManager = new ClusterManager<>(this, getMap());
+        mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<MapItem>() {
+            @Override
+            public boolean onClusterItemClick(MapItem mapItem) {
+                return false;
+            }
+        });
 
         getMap().setOnCameraIdleListener(mClusterManager);
         try {
@@ -98,17 +113,18 @@ public class MapActivity extends BaseActivity<MapContract.ViewContract, MapContr
     }
 
     private void readItems() throws JSONException {
-        InputStream inputStream = getResources().openRawResource(R.raw.radar_search);
-        List<MapItem> items = new MyItemReader().read(inputStream);
-        for (int i = 0; i < 10; i++) {
-            double offset = i / 60d;
-            for (MapItem item : items) {
-                LatLng position = item.getPosition();
-                double lat = position.latitude + offset;
-                double lng = position.longitude + offset;
-                MapItem offsetItem = new MapItem(lat, lng);
-                mClusterManager.addItem(offsetItem);
-            }
+        Intent intent = getIntent();
+        if (intent == null)
+            return;
+        List<MapDataResponse> dataResponses = (List<MapDataResponse>) intent.getSerializableExtra("ListMap");
+        getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(dataResponses.get(0).lat, dataResponses.get(0).lng), 10));
+        List<MapItem> items = new MyItemReader().read(dataResponses);
+        for (MapItem item : items) {
+            LatLng position = item.getPosition();
+            double lat = position.latitude;
+            double lng = position.longitude;
+            MapItem offsetItem = new MapItem(lat, lng);
+            mClusterManager.addItem(offsetItem);
         }
     }
 

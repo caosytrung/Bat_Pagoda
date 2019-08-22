@@ -1,5 +1,7 @@
 package com.example.trungcaosy.bat_pagoda.presentation.ui.map.model;
 
+import com.example.trungcaosy.bat_pagoda.data.response.MapDataResponse;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +38,15 @@ public class MyItemReader {
             }
             items.add(new MapItem(lat, lng, title, snippet));
         }
+        return items;
+    }
+
+    public List<MapItem> read(List<MapDataResponse> dataResponses) {
+        List<MapItem> items = new ArrayList<>();
+        for (MapDataResponse mapDataResponse : dataResponses){
+            items.add(MapItem.createMapItem(mapDataResponse));
+        }
+
         return items;
     }
 }

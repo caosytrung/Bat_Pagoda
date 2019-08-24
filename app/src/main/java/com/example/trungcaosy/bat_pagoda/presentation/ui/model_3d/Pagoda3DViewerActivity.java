@@ -205,4 +205,9 @@ public class Pagoda3DViewerActivity extends BaseActivity<Pagoda3DContract.ViewCo
         if (scene!= null)
             scene.zoomOut();
     }
+
+    @OnClick(R.id.ivBack)
+    public void back(){
+        finish();
+    }
 }

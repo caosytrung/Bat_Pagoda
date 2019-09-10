@@ -165,7 +165,7 @@ public class MapActivity extends BaseActivity<MapContract.ViewContract, MapContr
 
     @Override
     public boolean onClusterClick(Cluster<MapItem> cluster) {
-        return false;
+        return true;
     }
 
     @Override
@@ -192,7 +192,7 @@ public class MapActivity extends BaseActivity<MapContract.ViewContract, MapContr
      * Draws profile photos inside markers (using IconGenerator).
      * When there are multiple people in the cluster, draw multiple photos (using MultiDrawable).
      */
-    private class MapRenderer extends DefaultClusterRenderer<MapItem> {
+        private class MapRenderer extends DefaultClusterRenderer<MapItem> {
         private final IconGenerator mIconGenerator = new IconGenerator(getApplicationContext());
         private final IconGenerator mClusterIconGenerator = new IconGenerator(getApplicationContext());
         private final ImageView mImageView;

@@ -54,7 +54,8 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
 
         if (Utils.isNotStringEmpty(nodeData.imageUrl)){
             Glide.with(viewHoder.tvDisplay.getContext()).load(nodeData.imageUrl).
-                    placeholder(R.drawable.default_image).into(viewHoder.ivThumbnail);
+                    placeholder(R.drawable.default_image).
+                    into(viewHoder.ivThumbnail);
         }
     }
 

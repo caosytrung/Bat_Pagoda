@@ -4,16 +4,18 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:orientation="vertical"
+    android:background="@color/transparent"
     android:id="@+id/lnContainer"
     >
     <ImageView
+        android:background="@drawable/item_list_bg_top"
         android:id="@+id/ivThumbnail"
         android:layout_width="match_parent"
         android:src="@drawable/default_image"
         android:scaleType="centerCrop"
         android:layout_height="180dp" />
     <RelativeLayout
-        android:background="#E0E0E0"
+        android:background="@drawable/item_list_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView

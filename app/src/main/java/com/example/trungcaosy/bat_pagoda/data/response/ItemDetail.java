@@ -2,9 +2,10 @@ package com.example.trungcaosy.bat_pagoda.data.response;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ItemDetail {
+public class ItemDetail implements Serializable {
 
     @SerializedName("_id")
     public String id;
@@ -30,4 +31,9 @@ public class ItemDetail {
     @SerializedName("img_urls")
     public List<String> imageUrls;
 
+    @SerializedName("lat")
+    public double lat;
+
+    @SerializedName("lng")
+    public double lng;
 }

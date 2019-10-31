@@ -2,8 +2,11 @@ package com.example.trungcaosy.bat_pagoda.presentation.ui.detail;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -11,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.trungcaosy.bat_pagoda.R;
@@ -23,6 +27,7 @@ import com.example.trungcaosy.bat_pagoda.presentation.ui.detail.Adapter.DetailIm
 import com.example.trungcaosy.bat_pagoda.presentation.ui.detail.di.DetailContract;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.detail.di.DetailPresenter;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.main.adapter.ImagePagerAdapter;
+import com.example.trungcaosy.bat_pagoda.presentation.ui.map.MapActivity;
 import com.example.trungcaosy.bat_pagoda.utils.DataConstant;
 import com.example.trungcaosy.bat_pagoda.utils.Utils;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
@@ -33,9 +38,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
 import static com.example.trungcaosy.bat_pagoda.presentation.ui.main.MainActivity.DELAY_TIME;
+import static com.example.trungcaosy.bat_pagoda.presentation.ui.map.MapActivity.MAP_ITEM;
+import static com.example.trungcaosy.bat_pagoda.presentation.ui.map.MapActivity.MAP_TYPE;
+import static com.example.trungcaosy.bat_pagoda.presentation.ui.map.MapActivity.TYPE_SINGLE;
 
 public class DetailActivity extends BaseActivity<DetailContract.ViewContract, DetailContract.PresenterContract>
         implements DetailContract.ViewContract{
@@ -52,16 +61,26 @@ public class DetailActivity extends BaseActivity<DetailContract.ViewContract, De
     @BindView(R.id.tvName)
     TextView tvItemName;
 
+    @BindView(R.id.moveToMaps)
+    TextView tvMaps;
+
     @BindView(R.id.expand_text_view)
     CustomTextView tvDescription;
 
     @BindView(R.id.view_pager_indicator)
     ViewPagerIndicator indicator;
 
+    @BindView(R.id.rlBanner)
+    RelativeLayout rlBanner;
+
     @BindView(R.id.vpMain)
     AutoScrollViewPager scrollViewPager;
 
+    @BindView(R.id.rlMain)
+    RelativeLayout rlMain;
+
     private NodeData nodeData;
+    private ItemDetail itemDetail;
 
     @Inject
     DetailPresenter detailPresenter;
@@ -91,7 +110,31 @@ public class DetailActivity extends BaseActivity<DetailContract.ViewContract, De
         });
 
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
+    }
 
+    @OnClick(R.id.moveToMaps)
+    public void gotoMaps(){
+        if (itemDetail == null)
+            return;
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra(MAP_TYPE, TYPE_SINGLE);
+        intent.putExtra(MAP_ITEM, itemDetail);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.ibBanner)
+    public void openLink(){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://vi.wikipedia.org/wiki/Ch%C3%B9a_D%C6%A1i"));
+        startActivity(browserIntent);
+    }
+
+    @OnClick(R.id.ivCloseBanner)
+    public void closeBanner(){
+       rlBanner.setVisibility(View.GONE);
+
+        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) rlMain.getLayoutParams();
+        lp.setMargins(0,0,0,0);
+        rlMain.setLayoutParams(lp);
     }
 
     @Override
@@ -136,6 +179,13 @@ public class DetailActivity extends BaseActivity<DetailContract.ViewContract, De
 
     @Override
     public void updateData(ItemDetail response) {
+        itemDetail = response;
+        if (response.lat > 0 && response.lng > 0){
+            tvMaps.setVisibility(View.VISIBLE);
+        } else {
+            tvMaps.setVisibility(View.GONE);
+        }
+
         tvItemName.setText(response.name);
         tvDescription.setText(response.description);
 

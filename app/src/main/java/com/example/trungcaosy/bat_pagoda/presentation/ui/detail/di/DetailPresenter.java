@@ -8,12 +8,20 @@ import com.example.trungcaosy.bat_pagoda.domain.interactor.GetItemDetailUseCase;
 import javax.inject.Inject;
 
 public class DetailPresenter extends BaseApiPresenter<DetailContract.ViewContract> implements DetailContract.PresenterContract{
-
+    public ItemDetail response;
     private GetItemDetailUseCase getItemDetailUseCase;
 
     @Inject
     public DetailPresenter(GetItemDetailUseCase getItemDetailUseCase){
         this.getItemDetailUseCase = getItemDetailUseCase;
+    }
+
+    public ItemDetail getResponse() {
+        return response;
+    }
+
+    public void setResponse(ItemDetail response) {
+        this.response = response;
     }
 
     @Override
@@ -28,6 +36,7 @@ public class DetailPresenter extends BaseApiPresenter<DetailContract.ViewContrac
             public void onRequestSuccess(ItemDetail response) {
                 if (!isViewAttached())
                     return;
+
                 getView().hideLoading();
                 getView().updateData(response);
             }

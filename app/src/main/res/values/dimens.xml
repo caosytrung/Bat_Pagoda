@@ -6,6 +6,7 @@
     <dimen name="text_size_18">18sp</dimen>
     <dimen name="dm_6">6dp</dimen>
     <dimen name="dm_8">8dp</dimen>
+    <dimen name="dm_64">64dp</dimen>
     <dimen name="custom_profile_image">50dp</dimen>
     <dimen name="custom_profile_padding">2dp</dimen>
 </resources>

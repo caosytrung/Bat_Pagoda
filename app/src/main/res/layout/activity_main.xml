@@ -43,7 +43,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/lnContainer"
             android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -72,7 +71,44 @@
                     />
 
             </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lnContainer"
+                android:orientation="vertical"
+               /> >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_height="256dp">
+
+                <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
+                    android:id="@+id/vpBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="256dp"></cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager>
+
+                <com.example.trungcaosy.bat_pagoda.presentation.custom_view.indicator.ViewPagerIndicator
+                    android:id = "@+id/view_pager_indicator_banner"
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:layout_gravity = "center_horizontal|bottom"
+                    android:layout_marginBottom = "32dp"
+                    app:delimiterSize = "8dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    app:itemIcon = "@drawable/ic_insert_emoticon_black_24dp"
+                    app:itemScale = "1.5"
+                    app:itemSelectedTint = "@color/gray"
+                    app:itemSize = "8dp"
+                    app:itemTint = "@color/white"
+                    />
+
+            </RelativeLayout>
         </LinearLayout>
+
+
     </ScrollView>
     <RelativeLayout
         

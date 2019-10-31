@@ -60,6 +60,7 @@
             />
     </android.support.design.widget.AppBarLayout>
     <RelativeLayout
+        android:id="@+id/rlMain"
         android:layout_marginBottom="64dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -72,17 +73,32 @@
             ></android.support.v7.widget.RecyclerView>
     </RelativeLayout>
 
-    <ImageView
-        android:paddingTop="4dp"
-        android:cropToPadding="true"
-        android:background="@color/white"
-        android:layout_alignParentBottom="true"
+    <RelativeLayout
+        android:id="@+id/rlBanner"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/banner1"
-        android:id="@+id/ibBanner"
-        app:layout_scrollFlags="enterAlways"
         android:layout_gravity="bottom"
-        />
+        android:layout_alignParentBottom="true"
+        >
+        <ImageView
+            android:paddingTop="4dp"
+            android:cropToPadding="true"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/banner3"
+            android:id="@+id/ibBanner"
+            />
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_close"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="#88FFFFFF"
+            android:id="@+id/ivCloseBanner"
+            />
+
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

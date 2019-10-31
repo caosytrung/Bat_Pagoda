@@ -61,6 +61,7 @@
     </android.support.design.widget.AppBarLayout>
     <RelativeLayout
         android:layout_marginBottom="64dp"
+        android:id="@+id/rlMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -121,6 +122,19 @@
                     android:id="@+id/lnInforContainer"
                     />
 
+                <TextView
+                    android:id="@+id/moveToMaps"
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="@dimen/dm_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Xem bản đồ"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/holo_blue_dark"
+                    />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -161,18 +175,33 @@
         </android.support.v4.widget.NestedScrollView>
 
     </RelativeLayout>
-
-    <ImageView
-        android:paddingTop="4dp"
-        android:cropToPadding="true"
-        android:background="@color/white"
-        android:layout_alignParentBottom="true"
+    <RelativeLayout
+        android:id="@+id/rlBanner"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/banner1"
-        android:id="@+id/ibBanner"
-        app:layout_scrollFlags="enterAlways"
         android:layout_gravity="bottom"
-        />
+        android:layout_alignParentBottom="true"
+        >
+        <ImageView
+            android:paddingTop="4dp"
+            android:cropToPadding="true"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/banner1"
+            android:id="@+id/ibBanner"
+            />
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_close"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="#88FFFFFF"
+            android:id="@+id/ivCloseBanner"
+            />
+
+    </RelativeLayout>
+
 </android.support.design.widget.CoordinatorLayout>

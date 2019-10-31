@@ -1,6 +1,8 @@
 package com.example.trungcaosy.bat_pagoda.presentation.ui.main.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -50,11 +52,17 @@ public class ImagePagerAdapter extends RecyclingPagerAdapter {
             holder = (ViewHolder)view.getTag();
         }
         holder.imageView.setImageResource(imageIdList.get(getPosition(position)));
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://vi.wikipedia.org/wiki/Ch%C3%B9a_D%C6%A1i"));
+                context.startActivity(browserIntent);
+            }
+        });
         return view;
     }
 
     private static class ViewHolder {
-
         ImageView imageView;
     }
 

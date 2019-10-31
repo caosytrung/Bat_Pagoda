@@ -1,13 +1,16 @@
 package com.example.trungcaosy.bat_pagoda.presentation.ui.category;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.example.trungcaosy.bat_pagoda.R;
 import com.example.trungcaosy.bat_pagoda.base.BaseActivity;
@@ -22,6 +25,7 @@ import com.example.trungcaosy.bat_pagoda.utils.DataConstant;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class CategoryActivity  extends BaseActivity<CategoryContract.ViewContract, CategoryContract.PresenterContract>
         implements CategoryContract.ViewContract, RecyclerViewClick<NodeData> {
@@ -36,6 +40,12 @@ public class CategoryActivity  extends BaseActivity<CategoryContract.ViewContrac
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.rlBanner)
+    RelativeLayout rlBanner;
+
+    @BindView(R.id.rlMain)
+    RelativeLayout rlMain;
 
     @BindView(R.id.rvListItem)
     RecyclerView rvListItem;
@@ -77,6 +87,31 @@ public class CategoryActivity  extends BaseActivity<CategoryContract.ViewContrac
         });
 
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
+    }
+
+    @OnClick(R.id.ivCloseBanner)
+    public void closeBanner(){
+        rlBanner.setVisibility(View.GONE);
+        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) rlMain.getLayoutParams();
+        lp.setMargins(0,0,0,0);
+        rlMain.setLayoutParams(lp);
+    }
+
+    @OnClick(R.id.ibBanner)
+    public void openLink(){
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://vi.wikipedia.org/wiki/Ch%C3%B9a_D%C6%A1i"));
+        startActivity(browserIntent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        rlBanner.setVisibility(View.VISIBLE);
+        int diment64 = getResources().getDimensionPixelOffset(R.dimen.dm_64);
+        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) rlMain.getLayoutParams();
+        lp.setMargins(0,0,0,diment64);
+        rlMain.setLayoutParams(lp);
     }
 
     @Override

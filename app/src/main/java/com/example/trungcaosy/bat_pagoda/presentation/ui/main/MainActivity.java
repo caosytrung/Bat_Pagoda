@@ -34,6 +34,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 
+import static com.example.trungcaosy.bat_pagoda.presentation.ui.map.MapActivity.MAP_TYPE;
+import static com.example.trungcaosy.bat_pagoda.presentation.ui.map.MapActivity.TYPE_ALL;
+
 public class MainActivity extends BaseActivity<MainContract.ViewContract, MainContract.PresenterContract>
         implements MainContract.ViewContract, View.OnClickListener {
     public static int DELAY_TIME = 3000;
@@ -43,12 +46,17 @@ public class MainActivity extends BaseActivity<MainContract.ViewContract, MainCo
     @BindView(R.id.view_pager_indicator)
     ViewPagerIndicator indicator;
 
+    @BindView(R.id.vpBanner)
+    AutoScrollViewPager vpBanner;
+
+    @BindView(R.id.view_pager_indicator_banner)
+    ViewPagerIndicator indicatorBanner;
+
     @BindView(R.id.lnContainer)
     LinearLayout lnContainer;
 
     @Inject
     MainPresenter mMainPresenter;
-    ;
 
 
     @Override
@@ -105,21 +113,33 @@ public class MainActivity extends BaseActivity<MainContract.ViewContract, MainCo
 
     private void setupViewPager() {
         List<Integer> imageList = new ArrayList<>();
-        imageList.add(R.drawable.img_vp_1);
-        imageList.add(R.drawable.img_vp_2);
-        imageList.add(R.drawable.img_vp_3);
-        imageList.add(R.drawable.img_vp_4);
+        imageList.add(R.drawable.bat_pagoda_1);
+        imageList.add(R.drawable.bat_pagoda_2);
+        imageList.add(R.drawable.bat_pagoda_3);
+        imageList.add(R.drawable.bat_pagoda_4);
         vpMain.setAdapter(new ImagePagerAdapter(this, imageList).setInfiniteLoop(false));
         vpMain.setInterval(DELAY_TIME);
         vpMain.startAutoScroll();
         vpMain.setCurrentItem(0);
         indicator.setupWithViewPager(vpMain);
+
+
+        List<Integer> imageListBanner = new ArrayList<>();
+        imageListBanner.add(R.drawable.banner1);
+        imageListBanner.add(R.drawable.banner2);
+        imageListBanner.add(R.drawable.banner3);
+        vpBanner.setAdapter(new ImagePagerAdapter(this, imageListBanner).setInfiniteLoop(false));
+        vpBanner.setInterval(DELAY_TIME);
+        vpBanner.startAutoScroll();
+        vpBanner.setCurrentItem(0);
+        indicatorBanner.setupWithViewPager(vpBanner);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         vpMain.startAutoScroll();
+        vpBanner.startAutoScroll();
     }
 
     @Override
@@ -182,6 +202,7 @@ public class MainActivity extends BaseActivity<MainContract.ViewContract, MainCo
     @Override
     public void onGetMapSuccess(List<MapDataResponse> response) {
         Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra(MAP_TYPE, TYPE_ALL);
         intent.putExtra("ListMap", (Serializable) response);
         startActivity(intent);
     }

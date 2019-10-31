@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.trungcaosy.bat_pagoda.R;
 import com.example.trungcaosy.bat_pagoda.base.BaseActivity;
+import com.example.trungcaosy.bat_pagoda.data.response.ItemDetail;
 import com.example.trungcaosy.bat_pagoda.data.response.MapDataResponse;
 import com.example.trungcaosy.bat_pagoda.data.response.NodeData;
 import com.example.trungcaosy.bat_pagoda.presentation.ui.detail.DetailActivity;
@@ -51,10 +52,16 @@ import butterknife.OnClick;
 
 public class MapActivity extends BaseActivity<MapContract.ViewContract, MapContract.PresenterContract>
         implements MapContract.ViewContract,OnMapReadyCallback, ClusterManager.OnClusterItemClickListener<MapItem>, ClusterManager.OnClusterClickListener<MapItem>, ClusterManager.OnClusterInfoWindowClickListener<MapItem>, ClusterManager.OnClusterItemInfoWindowClickListener<MapItem> {
+    public static final String MAP_TYPE = "map_types";
+    public static final String TYPE_ALL = "map_all";
+    public static final String TYPE_SINGLE = "map_single";
+    public static final String MAP_ITEM = "mapItem";
+
     private GoogleMap mMap;
     private ClusterManager<MapItem> mClusterManager;
     private int[] markerArray = new int[]{R.drawable.marker_1,R.drawable.marker_2,R.drawable.marker_3};
     private MapItem clickedClusterItem;
+    List<MapDataResponse> dataResponses;
 
     @Inject
     MapPresenter mapPresenter;
@@ -117,7 +124,25 @@ public class MapActivity extends BaseActivity<MapContract.ViewContract, MapContr
     }
 
     protected void startDemo() {
-      //  getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 10));
+        Intent intent = getIntent();
+        if (intent == null)
+            return;
+        String mapType = getIntent().getStringExtra(MAP_TYPE);
+        if (mapType.equals(TYPE_SINGLE)){
+            ItemDetail itemDetail = (ItemDetail) intent.getSerializableExtra(MAP_ITEM);
+            LatLng sydney = new LatLng(itemDetail.lat, itemDetail.lng);
+            mMap.addMarker(new MarkerOptions().position(sydney)
+                    .title(itemDetail.name));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 18));
+            mMap.animateCamera(CameraUpdateFactory.zoomIn());
+            // Zoom out to zoom level 10, animating with a duration of 2 seconds.
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
+            return;
+        }
+
+
+        dataResponses = (List<MapDataResponse>) intent.getSerializableExtra("ListMap");
+      // getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.503186, -0.126446), 10));
 
         mClusterManager = new ClusterManager<>(this, getMap());
         mClusterManager.setRenderer(new MapRenderer());
@@ -142,10 +167,6 @@ public class MapActivity extends BaseActivity<MapContract.ViewContract, MapContr
     }
 
     private void readItems() throws JSONException {
-        Intent intent = getIntent();
-        if (intent == null)
-            return;
-        List<MapDataResponse> dataResponses = (List<MapDataResponse>) intent.getSerializableExtra("ListMap");
         getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(dataResponses.get(0).lat, dataResponses.get(0).lng), 10));
         List<MapItem> items = new MyItemReader().read(dataResponses);
         for (MapItem item : items) {

@@ -77,10 +77,4 @@ public class APIModule {
     public MapRepository provideMapRepository(){
         return new MapDataRepositoryImpl(provideUserProfileService());
     }
-//
-//    @Provides
-//    @Singleton
-//    public TherapyHistoryRepos provideTherapyHistoryRepos(){
-//        return new TherapyHistoryDataRepos(provideUserProfileService());
-//    }
 }

@@ -19,5 +19,4 @@ public class MapDataResponse implements Serializable{
 
     @SerializedName("address")
     public String address;
-
 }
